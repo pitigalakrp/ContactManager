@@ -1,6 +1,6 @@
 import React,{useState,useEffect}from 'react';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import './App.css';
 import Header from './Header';
 import AddContact from './AddContact';
@@ -30,17 +30,18 @@ function App() {
   },[contacts]);
 
   return (
-      <BrowserRouter>
+      
     <div className='ui container'>
+      <BrowserRouter>
         <Header/>
         <Routes>
-          <Route exact path='/' element = {<ContactList contacts = {contacts} getContactId = {removeContactHandler}/>} />
-          <Route exact path='/add' element = { <AddContact addContactHandler = {addContactHandler}/> } />
+          <Route exact path='/' element = {<ContactList render = {(props) => ({...props})} contacts = {contacts} getContactId = {removeContactHandler}/>} />
+          <Route exact path='/add' element = { <AddContact render = {(props) => ({...props})} addContactHandler = {addContactHandler}/> } />
         </Routes>
+      </BrowserRouter>
       {/* <AddContact addContactHandler = {addContactHandler}/>
       <ContactList contacts = {contacts} getContactId = {removeContactHandler}/> */}
       </div>
-      </BrowserRouter>
   );
 }
 
