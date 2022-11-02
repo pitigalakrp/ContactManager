@@ -30,17 +30,17 @@ function App() {
   },[contacts]);
 
   return (
-    <div className='ui container'>
       <BrowserRouter>
+    <div className='ui container'>
         <Header/>
         <Routes>
-          <Route path='/' element = {() => <ContactList contacts = {contacts} getContactId = {removeContactHandler}/>} />
-          <Route path='/add' element = { () => <AddContact addContactHandler = {addContactHandler}/> } />
+          <Route exact path='/' element = {<ContactList contacts = {contacts} getContactId = {removeContactHandler}/>} />
+          <Route exact path='/add' element = { <AddContact addContactHandler = {addContactHandler}/> } />
         </Routes>
-      </BrowserRouter>
       {/* <AddContact addContactHandler = {addContactHandler}/>
       <ContactList contacts = {contacts} getContactId = {removeContactHandler}/> */}
       </div>
+      </BrowserRouter>
   );
 }
 
