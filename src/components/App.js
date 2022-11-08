@@ -5,6 +5,7 @@ import './App.css';
 import Header from './Header';
 import AddContact from './AddContact';
 import ContactList from './ContactList';
+import ContactDetail from './ContactDetail';
 
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
@@ -13,7 +14,6 @@ function App() {
   );
 
   const addContactHandler = (contact) => {
-    console.log(contact);
     setContacts([...contacts, { id: uuid(), ...contact }]);
   };
 
@@ -37,6 +37,7 @@ function App() {
         <Routes>
           <Route exact path='/' element = {<ContactList render = {(props) => ({...props})} contacts = {contacts} getContactId = {removeContactHandler}/>} />
           <Route exact path='/add' element = { <AddContact render = {(props) => ({...props})} addContactHandler = {addContactHandler}/> } />
+          <Route exact path='/contact/{id}' element={<ContactDetail/>}/>
         </Routes>
       </BrowserRouter>
       {/* <AddContact addContactHandler = {addContactHandler}/>
